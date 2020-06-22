@@ -2,9 +2,12 @@ package com.gojek.parkinglot.datastore.inMemoryDB;
 
 import com.gojek.parkinglot.core.ParkingStratergy;
 import com.gojek.parkinglot.entities.ParkingLevel;
+import com.gojek.parkinglot.entities.Ticket;
+import com.gojek.parkinglot.entities.Vehicle;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author : gaurav.ss
@@ -43,5 +46,10 @@ public class MultiLevelParking {
     public void addParkingLot(int level, int capacity, ParkingStratergy stratergy){
         parkingLevelMap.put(level, new ParkingLevel(capacity, level, stratergy));
     }
+
+    public Optional<Ticket> park(int level, Vehicle vehicle){
+        return parkingLevelMap.get(level).park(vehicle);
+    }
+
 
 }

@@ -2,6 +2,7 @@ package com.gojek.parkinglot.commandInterpretor;
 
 import com.gojek.parkinglot.core.NearestToEntryStratergy;
 import com.gojek.parkinglot.core.ParkingLotService;
+import com.gojek.parkinglot.entities.Car;
 import com.gojek.parkinglot.exception.ParkingLotError;
 import com.gojek.parkinglot.exception.Error;
 import com.gojek.parkinglot.exception.ParkinglotException;
@@ -67,6 +68,13 @@ public class CommandProcessor {
             }catch(NumberFormatException e){
                 throwParkingLotException(ParkingLotError.WRONG_PARAMETER);
             }
+
+        }
+        if(command.equals("park")){
+            int level=0; // default level
+            String regisNumber=parts[1];
+            String color=parts[2];
+            parkingLotService.park(level, new Car(regisNumber, color));
 
         }
     }

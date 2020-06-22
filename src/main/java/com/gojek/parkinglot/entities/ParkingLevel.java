@@ -89,9 +89,30 @@ public class ParkingLevel implements ParkingLot {
                 '}';
     }
 
+
+    private Ticket generateTicket(int slot, Vehicle vehicle){
+        Ticket ticket= new Ticket(vehicle.getRegistrationNumber(), vehicle.getColor(), slot, level);
+        tickets.add(ticket);
+        return ticket;
+    }
+
     @Override
     public Optional<Ticket> park(Vehicle vehicle) {
-        return Optional.empty();
+
+        if(availableSlots==0) {
+            System.out.println("Sorry, parking lot is full");
+            return Optional.empty();
+        }
+        int slot=parkingStratergy.getFreeSlot(slotsStatus);
+
+        if(slotsStatus.values().contains(Optional.of(vehicle))){
+            System.out.println("Vehicle already present in the parking");
+            return Optional.empty();
+        }
+        slotsStatus.get(slot).setFree(false);
+        slotsStatus.get(slot).setVehicleOpt(Optional.of(vehicle));
+        availableSlots--;
+        return Optional.of(generateTicket(slot, vehicle));
     }
 
     @Override

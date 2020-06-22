@@ -2,6 +2,7 @@ package com.gojek.parkinglot;
 
 
 import com.gojek.parkinglot.commandInterpretor.CommandProcessor;
+import com.gojek.parkinglot.exception.ParkinglotException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,7 +25,12 @@ public class Application {
             while ((command = bufferReader.readLine()) != null) {
                 command=command.trim();
                 if(processor.validateCommand(command)){  // validate each command before executing it
-                    System.out.println("Valid command: " +command);
+
+                    try {
+                        processor.executeCommand(command);
+                    }catch (ParkinglotException e){
+                        System.out.println(e.getError());
+                    }
                 }else{
                     System.out.println("ERROR: You have entered a wrong command: {}" + command + " at line: {}" + lineNumber);
                 }
@@ -39,17 +45,21 @@ public class Application {
 
     }
 
+    private static void executeCommandPrompt(){
+
+    }
+
 
     public static void main(String[] args) {
-        System.out.println("Staring Gojek Assignment: 09:36am");
+
         processor =new CommandProcessor();
-        //if args has a fileName then read input commands from file, else prompt a shell for command execution
+        //if args has a filePath then read input commands from file, else prompt a shell for command execution
         if (args.length == 1) { // we have a file to read commands from
             executeCammandsFromAFile(args[0]);
         }
         else
         if(args.length==0){ // we have to prompt interactive shell
-
+            executeCommandPrompt();
         }else{
             System.out.println("Please go through ReadMe to run this code");
         }

@@ -1,5 +1,11 @@
 package com.gojek.parkinglot.commandInterpretor;
 
+import com.gojek.parkinglot.core.NearestToEntryStratergy;
+import com.gojek.parkinglot.core.ParkingLotService;
+import com.gojek.parkinglot.exception.ParkingLotError;
+import com.gojek.parkinglot.exception.Error;
+import com.gojek.parkinglot.exception.ParkinglotException;
+
 import java.util.Set;
 
 /**
@@ -10,8 +16,12 @@ import java.util.Set;
 public class CommandProcessor {
 
     private Commands commands;
+    private ParkingLotService parkingLotService;
+
     public CommandProcessor(){
         commands =new Commands();
+        parkingLotService=new ParkingLotService();
+
     }
 
     private boolean checkValidCommandName(Set<String> commands, String inputCommans){
@@ -41,5 +51,33 @@ public class CommandProcessor {
     }
 
 
-    public void executeCommand(String inputCommand){ }
+    private void createParkingLot(Integer capacity) throws ParkinglotException {
+        int level=0; // by default ground floor is chosen as a level
+        parkingLotService.createParkingLot(level, capacity, new NearestToEntryStratergy());
+    }
+
+    public void executeCommand(String inputCommand) throws ParkinglotException{
+        String[] parts=inputCommand.split(" ");
+        String command=parts[0];
+
+        if(command.equals("create_parking_lot")){
+            try {
+                int capacity = Integer.parseInt(parts[1]);  //Todo: handle exceptions
+                createParkingLot(capacity);
+            }catch(NumberFormatException e){
+                throwParkingLotException(ParkingLotError.WRONG_PARAMETER);
+            }
+
+        }
+    }
+
+
+    private void throwParkingLotException(ParkingLotError parkingLotError) throws ParkinglotException {
+        Error error = new Error();
+        error.setErrorCode(parkingLotError.name());
+        error.setErrorMsg(parkingLotError.getErrorMsg());
+        ParkinglotException exception = new ParkinglotException();
+        exception.setError(error);
+        throw exception;
+    }
 }

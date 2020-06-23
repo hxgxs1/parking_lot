@@ -25,19 +25,14 @@ public class ParkingLotService {
 
     public String createParkingLot(int level , int capacity, ParkingStratergy stratergy) throws ParkinglotException {
         multiLevelParking = MultiLevelParking.getInstance();
-        if(multiLevelParking.getParkingLevelMap().containsKey(level)){
-            throwParkingLotException(ParkingLotError.PARKIGN_LOT_ALREADY_EXISTS);
-        }
-
+        isMLPpresent();
         multiLevelParking.addParkingLot(level, capacity, stratergy);
         System.out.println("Created a parking lot with "+  capacity +" slots");
         return "Created a parking lot with "+  capacity +" slots";
     }
 
     public Optional<Ticket> park(int level, Vehicle vehicle) throws ParkinglotException{
-        if(multiLevelParking==null){  //Todo: make a separate function to check this in each command
-            throwParkingLotException(ParkingLotError.PARKING_LOT_DOES_NOT_EXIST);
-        }
+        isMLPpresent();
         try {
             Optional<Ticket> ticketOpt = multiLevelParking.park(level, vehicle);
             ticketOpt.ifPresent(ticket -> System.out.println("Allocated slot number:" + ticket.getSlot()));
@@ -51,9 +46,7 @@ public class ParkingLotService {
 
     public Optional<Integer>  leave(int level, int slot) throws ParkinglotException{
 
-        if(multiLevelParking==null){
-            throwParkingLotException(ParkingLotError.PARKING_LOT_DOES_NOT_EXIST);
-        }
+        isMLPpresent();
         try {
             Optional<Integer> slotOpt = multiLevelParking.leave(level, slot);
             if (slotOpt.isPresent()) {
@@ -67,9 +60,7 @@ public class ParkingLotService {
     }
 
     public List<String> getStatus(int level) throws ParkinglotException{
-        if(multiLevelParking==null){
-            throwParkingLotException(ParkingLotError.PARKING_LOT_DOES_NOT_EXIST);
-        }
+        isMLPpresent();
         List<String> ans= multiLevelParking.getStatus(level);
         if(ans.size()==1){
             System.out.println("Parking-lot is empty");
@@ -82,9 +73,7 @@ public class ParkingLotService {
     }
 
     public List<String> getRegistrationNumsForColour(int level, String color) throws ParkinglotException{
-        if(multiLevelParking==null){
-            throwParkingLotException(ParkingLotError.PARKING_LOT_DOES_NOT_EXIST);
-        }
+        isMLPpresent();
         List<String> regisNums= multiLevelParking.getRegistrationNumsForColour(level, color);
         if(regisNums.size()==0)
             System.out.println("No cars parked with this color");
@@ -100,9 +89,7 @@ public class ParkingLotService {
     }
 
     public Optional<Integer> slotForRegistrationNumber(int level, String registrationNUm) throws ParkinglotException{
-        if(multiLevelParking==null){
-            throwParkingLotException(ParkingLotError.PARKING_LOT_DOES_NOT_EXIST);
-        }
+        isMLPpresent();
         Optional<Integer> slot=multiLevelParking.getSlotForRegistrationNumber(level, registrationNUm);
         if(slot.isPresent()){
             System.out.println(slot.get());
@@ -113,9 +100,8 @@ public class ParkingLotService {
     }
 
     public List<Integer> getSlotsForVehicleColour(int level, String color) throws ParkinglotException{
-        if(multiLevelParking==null){
-            throwParkingLotException(ParkingLotError.PARKING_LOT_DOES_NOT_EXIST);
-        }
+
+        isMLPpresent();
         List<Integer> slots=multiLevelParking.getSlotsForVehicleColour(level, color);
         if(slots.size()==0){
             System.out.println("Sorry, No vehicles of this color has been parked");
@@ -129,6 +115,11 @@ public class ParkingLotService {
         }
         return slots;
 
+    }
+    private void isMLPpresent() throws ParkinglotException{
+        if(multiLevelParking==null){
+            throwParkingLotException(ParkingLotError.PARKING_LOT_DOES_NOT_EXIST);
+        }
     }
 
     private void throwParkingLotException(ParkingLotError parkingLotError) throws ParkinglotException {

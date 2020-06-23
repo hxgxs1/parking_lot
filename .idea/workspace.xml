@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb9d5f78-9c3b-449a-8a71-44e16950ce5a" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/parking_lot.sh" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/setup.sh" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ElectricSlot.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingSlot.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/core/ParkingLotServiceTest.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/Application.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/Application.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/commandInterpretor/CommandProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/commandInterpretor/CommandProcessor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/NearestToEntryStratergy.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/NearestToEntryStratergy.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/ParkingLotService.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/ParkingLotService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/datastore/inMemoryDB/MultiLevelParking.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/datastore/inMemoryDB/MultiLevelParking.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/Car.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/Car.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingLevel.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingLevel.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingLot.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingLot.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/Slot.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/Slot.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/exception/ParkingLotError.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/exception/ParkingLotError.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/CommandsTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/commandInterpretor/CommandsTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/ParkingLotTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/ParkingLotTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -49,9 +31,21 @@
       <file leaf-file-name="ParkingLotError.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/exception/ParkingLotError.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="34" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="34" />
+            <state relative-caret-position="255">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParkingLotService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/ParkingLotService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="121" column="9" lean-forward="true" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -66,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommandProcessor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CommandProcessor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/commandInterpretor/CommandProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="82" column="33" lean-forward="true" selection-start-line="82" selection-start-column="33" selection-end-line="82" selection-end-column="33" />
+            <state relative-caret-position="477">
+              <caret line="49" column="25" lean-forward="true" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -123,18 +117,18 @@
       <file leaf-file-name="ParkingLot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingLot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="19" column="50" lean-forward="false" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
+            <state relative-caret-position="315">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Commands.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/commandInterpretor/Commands.java">
+      <file leaf-file-name="ParkingSlot.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingSlot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+            <state relative-caret-position="510">
+              <caret line="46" column="31" lean-forward="true" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -199,10 +193,10 @@
         <option value="$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/commandInterpretor/CommandsTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingLot.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/datastore/inMemoryDB/MultiLevelParking.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/ParkingLotService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/exception/ParkingLotError.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingLevel.java" />
         <option value="$PROJECT_DIR$/src/main/resources/inputFiles/file_inputs.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/ParkingLotService.java" />
       </list>
     </option>
   </component>
@@ -286,15 +280,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="parkinglot" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parking_lot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="parking_lot" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parkinglot" type="462c0819:PsiDirectoryNode" />
-              <item name="inMemoryDB" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="parking_lot" type="b2602c69:ProjectViewProjectNode" />
@@ -423,7 +408,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="com.gojek.parkinglot.Application" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/main/resources/inputFiles/file_inputs.txt" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -965,30 +950,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingSlot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/NearestToEntryStratergy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingLot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="19" column="50" lean-forward="false" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/datastore/inMemoryDB/MultiLevelParking.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -1014,24 +975,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/ParkingLotService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="135" column="26" lean-forward="false" selection-start-line="135" selection-start-column="14" selection-end-line="135" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/exception/ParkingLotError.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="34" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingLevel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="373">
@@ -1053,8 +996,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/commandInterpretor/CommandProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="82" column="33" lean-forward="true" selection-start-line="82" selection-start-column="33" selection-end-line="82" selection-end-column="33" />
+        <state relative-caret-position="477">
+          <caret line="49" column="25" lean-forward="true" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingLot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingSlot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="46" column="31" lean-forward="true" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/NearestToEntryStratergy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/exception/ParkingLotError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/ParkingLotService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="121" column="9" lean-forward="true" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

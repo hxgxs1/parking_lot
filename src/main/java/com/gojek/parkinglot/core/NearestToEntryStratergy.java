@@ -19,7 +19,7 @@ public class NearestToEntryStratergy implements ParkingStratergy{
         Integer slot=0;
         TreeSet<Integer> slotNumbers= new TreeSet<>(slots.keySet());
         for(Integer slotNumber: slotNumbers){
-           if(slots.get(slotNumber).isFree())
+           if(!slots.get(slotNumber).getVehicleOpt().isPresent())
                return slotNumber;
         }
         return slot;

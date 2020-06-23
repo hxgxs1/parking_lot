@@ -7,6 +7,7 @@ package com.gojek.parkinglot.entities;
 public class Car extends Vehicle{
 
     public Car(String registrationNumber, String color) {
+        //todo: check on null/empty attributes;
         super(registrationNumber, color);
     }
 }

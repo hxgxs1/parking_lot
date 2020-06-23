@@ -1,4 +1,4 @@
-package com.gojek.parkinglot;
+package com.gojek.parkinglot.commandInterpretor;
 
 import com.gojek.parkinglot.commandInterpretor.Commands;
 import org.junit.After;

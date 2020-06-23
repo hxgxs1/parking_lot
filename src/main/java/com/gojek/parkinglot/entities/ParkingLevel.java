@@ -1,7 +1,12 @@
 package com.gojek.parkinglot.entities;
 
 import com.gojek.parkinglot.core.ParkingStratergy;
+import com.gojek.parkinglot.exception.Error;
+import com.gojek.parkinglot.exception.ParkingLotError;
+import com.gojek.parkinglot.exception.ParkinglotException;
+
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author : gaurav.ss
@@ -12,21 +17,19 @@ public class ParkingLevel implements ParkingLot {
 
     private int capapcity;
     private int level;
-    private int availableSlots;
     private ParkingStratergy parkingStratergy;
     private List<Ticket> tickets;
-    private Map<Integer, Slot> slotsStatus;
+    private Map<Integer, Slot> slots;
 
 
     public ParkingLevel(int capapcity, int level, ParkingStratergy parkingStratergy) {
         this.capapcity = capapcity;
         this.level = level;
-        this.availableSlots = capapcity;
         this.parkingStratergy = parkingStratergy;
-        this.slotsStatus=new HashMap<>();
+        this.slots=new HashMap<>();
         this.tickets=new ArrayList<>();
         for(int i=1;i<=capapcity;i++){
-            slotsStatus.put(i, new Slot(i, 0, true)); //all slots are empty initially;
+            slots.put(i, new Slot(i, 0));
         }
     }
 
@@ -46,14 +49,6 @@ public class ParkingLevel implements ParkingLot {
         this.level = level;
     }
 
-    public int getAvailableSlots() {
-        return availableSlots;
-    }
-
-    public void setAvailableSlots(int availableSlots) {
-        this.availableSlots = availableSlots;
-    }
-
     public ParkingStratergy getParkingStratergy() {
         return parkingStratergy;
     }
@@ -71,11 +66,11 @@ public class ParkingLevel implements ParkingLot {
     }
 
     public Map<Integer, Slot> getSlotsStatus() {
-        return slotsStatus;
+        return slots;
     }
 
     public void setSlotsStatus(Map<Integer, Slot> slotsStatus) {
-        this.slotsStatus = slotsStatus;
+        this.slots = slotsStatus;
     }
 
     @Override
@@ -83,9 +78,8 @@ public class ParkingLevel implements ParkingLot {
         return "ParkingLevel{" +
                 "capapcity=" + capapcity +
                 ", level=" + level +
-                ", availableSlots=" + availableSlots +
                 ", parkingStratergy=" + parkingStratergy +
-                ", slotsStatus=" + slotsStatus +
+                ", slotsStatus=" + slots +
                 '}';
     }
 
@@ -96,37 +90,119 @@ public class ParkingLevel implements ParkingLot {
         return ticket;
     }
 
+    private boolean checkIfVehicleAlreadyPresent(Vehicle vehicle){
+        int count = (int)slots.values()
+                .stream()
+                .filter(x-> x.getVehicleOpt().isPresent() && x.getVehicleOpt().get().getRegistrationNumber().toLowerCase().equals(vehicle.getRegistrationNumber().toLowerCase()))
+                .count();
+        if(count>0)
+            return true;
+        return false;
+    }
+
     @Override
-    public Optional<Ticket> park(Vehicle vehicle) {
+    public Optional<Ticket> park(Vehicle vehicle) throws ParkinglotException {
 
-        if(availableSlots==0) {
-            System.out.println("Sorry, parking lot is full");
-            return Optional.empty();
+        if(getAvailableSlotsCount()==0) {
+            throwParkingLotException(ParkingLotError.PARKING_IS_FULL);
         }
-        int slot=parkingStratergy.getFreeSlot(slotsStatus);
+        if(checkIfVehicleAlreadyPresent(vehicle)){
+            throwParkingLotException(ParkingLotError.VEHICLE_ALREADY_PRESENT_IN_LOT);
+        }
+        int slot=parkingStratergy.getFreeSlot(slots);
 
-        if(slotsStatus.values().contains(Optional.of(vehicle))){
-            System.out.println("Vehicle already present in the parking");
-            return Optional.empty();
+        if(slots.values().contains(Optional.of(vehicle))){
+            throwParkingLotException(ParkingLotError.VEHICLE_ALREADY_PARKED_ON_THIS_SLOT);
         }
-        slotsStatus.get(slot).setFree(false);
-        slotsStatus.get(slot).setVehicleOpt(Optional.of(vehicle));
-        availableSlots--;
+        slots.get(slot).setVehicleOpt(Optional.of(vehicle));
         return Optional.of(generateTicket(slot, vehicle));
     }
 
     @Override
-    public void leave(int slot) {
+    public Optional<Integer> leave(int slot) throws ParkinglotException{
 
+        if(slots.size() < slot) {
+            throwParkingLotException(ParkingLotError.INVALID_SLOT);
+        }
+
+        if(!slots.get(slot).getVehicleOpt().isPresent()) {
+            throwParkingLotException(ParkingLotError.SLOT_IS_EMPTY);
+        }
+        slots.get(slot).setVehicleOpt(Optional.empty());
+        return Optional.of(slot);
     }
+
 
     @Override
     public int getAvailableSlotsCount() {
-        return 0;
+
+        return (int) slots.entrySet()
+                .stream()
+                .filter(x-> !x.getValue().getVehicleOpt().isPresent()).count();
+    }
+
+
+
+    @Override
+    public List<String> getRegistrationNumsForColour(String color) {
+
+        List<String> regNums  = slots.values()
+                .stream()
+                .filter(x-> x.getVehicleOpt().isPresent() && x.getVehicleOpt().get().getColor().toLowerCase().equals(color.toLowerCase()))
+                .map(x-> x.getVehicleOpt().get().getRegistrationNumber())
+                .collect(Collectors.toList());
+        return regNums;
     }
 
     @Override
-    public List<String> getStatus() {
-        return null;
+    public Optional<Integer> getSlotForRegistrationNumber(String registrationNum) {
+
+        for(Map.Entry<Integer, Slot> entry: slots.entrySet()){
+            if(entry.getValue().getVehicleOpt().isPresent()){
+                Vehicle vehicle=entry.getValue().getVehicleOpt().get();
+                if(vehicle.getRegistrationNumber().toLowerCase().equals(registrationNum.toLowerCase()))
+                    return Optional.of(entry.getKey());
+            }
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Integer> getSlotsForVehicleColour(String color) {
+
+        List<Integer> coloredSlots = slots.entrySet()
+                .stream()
+                .filter(x-> x.getValue().getVehicleOpt().isPresent() && x.getValue().getVehicleOpt().get().getColor().toLowerCase().equals(color.toLowerCase()))
+                .map(x-> x.getKey())
+                .collect(Collectors.toList());
+        return coloredSlots;
+    }
+
+    @Override
+    public List<Ticket> getAllTicketsForThisLot() {
+        return tickets;
+    }
+
+
+    @Override
+    public List<String> getStatus(){
+        List<String> status=new ArrayList<>();
+        status.add("Slot No."+ "    "+ "Registration No" + "    "+ "Colour");
+        for(int i=1;i<=capapcity;i++){
+            if(slots.get(i).getVehicleOpt().isPresent()){
+                Vehicle vehicle= slots.get(i).getVehicleOpt().get();
+                status.add(i +"     " + vehicle.getRegistrationNumber() + "    "+ vehicle.getColor());
+            }
+        }
+        return status;
+    }
+
+    private void throwParkingLotException(ParkingLotError parkingLotError) throws ParkinglotException {
+        Error error = new Error();
+        error.setErrorCode(parkingLotError.name());
+        error.setErrorMsg(parkingLotError.getErrorMsg());
+        ParkinglotException exception = new ParkinglotException();
+        exception.setError(error);
+        throw exception;
     }
 }

@@ -4,8 +4,10 @@ import com.gojek.parkinglot.core.ParkingStratergy;
 import com.gojek.parkinglot.entities.ParkingLevel;
 import com.gojek.parkinglot.entities.Ticket;
 import com.gojek.parkinglot.entities.Vehicle;
+import com.gojek.parkinglot.exception.ParkinglotException;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -47,9 +49,28 @@ public class MultiLevelParking {
         parkingLevelMap.put(level, new ParkingLevel(capacity, level, stratergy));
     }
 
-    public Optional<Ticket> park(int level, Vehicle vehicle){
+    public Optional<Ticket> park(int level, Vehicle vehicle) throws ParkinglotException{
         return parkingLevelMap.get(level).park(vehicle);
     }
 
+    public Optional<Integer> leave(int level, int slot) throws ParkinglotException{
+        return parkingLevelMap.get(level).leave(slot);
+    }
+
+    public List<String> getStatus(int level){
+        return parkingLevelMap.get(level).getStatus();
+    }
+
+    public List<String> getRegistrationNumsForColour(int level, String color){
+        return parkingLevelMap.get(level).getRegistrationNumsForColour(color);
+    }
+
+    public Optional<Integer> getSlotForRegistrationNumber(int level, String registrationNum){
+        return parkingLevelMap.get(level).getSlotForRegistrationNumber(registrationNum);
+    }
+
+    public List<Integer> getSlotsForVehicleColour(int level, String color){
+        return parkingLevelMap.get(level).getSlotsForVehicleColour(color);
+    }
 
 }

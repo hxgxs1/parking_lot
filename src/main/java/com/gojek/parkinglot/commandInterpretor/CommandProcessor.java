@@ -58,9 +58,10 @@ public class CommandProcessor {
     }
 
     public void executeCommand(String inputCommand) throws ParkinglotException{
+
         String[] parts=inputCommand.split(" ");
         String command=parts[0];
-
+        int level=0;
         if(command.equals("create_parking_lot")){
             try {
                 int capacity = Integer.parseInt(parts[1]);  //Todo: handle exceptions
@@ -71,11 +72,38 @@ public class CommandProcessor {
 
         }
         if(command.equals("park")){
-            int level=0; // default level
+
             String regisNumber=parts[1];
             String color=parts[2];
             parkingLotService.park(level, new Car(regisNumber, color));
 
+        }
+
+        if(command.equals("status")){
+            parkingLotService.getStatus(level);
+        }
+
+        if(command.equals("leave")){
+            try {
+                int slot = Integer.parseInt(parts[1]);
+                parkingLotService.leave(level, slot);
+            }catch (NumberFormatException e){
+                throwParkingLotException(ParkingLotError.WRONG_PARAMETER);
+            }
+        }
+
+        if(command.equals("registration_numbers_for_cars_with_colour")){
+            String color=parts[1];
+            parkingLotService.getRegistrationNumsForColour(level, color);
+        }
+        if(command.equals("slot_number_for_registration_number")){
+
+            String registrationNum=parts[1];
+            parkingLotService.slotForRegistrationNumber(level, registrationNum);
+        }
+        if(command.equals("slot_numbers_for_cars_with_colour")){
+            String color=parts[1];
+            parkingLotService.getSlotsForVehicleColour(level, color);
         }
     }
 

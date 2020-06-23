@@ -78,9 +78,9 @@ public class Application {
 
     public static void main(String[] args) {
 
-        //Todo: keep level implicit add a strategy for the same
         processor =new CommandProcessor();
         //if args has a filePath then read input commands from file, else prompt a shell for command execution
+
         if (args.length == 1) { // we have a file to read commands from
             executeCammandsFromAFile(args[0]);
         }

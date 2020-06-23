@@ -187,11 +187,11 @@ public class ParkingLevel implements ParkingLot {
     @Override
     public List<String> getStatus(){
         List<String> status=new ArrayList<>();
-        status.add("Slot No."+ "    "+ "Registration No" + "    "+ "Colour");
+        status.add("Slot No."+ "\t"+ "Registration No" + "\t\t"+ "Colour");
         for(int i=1;i<=capapcity;i++){
             if(slots.get(i).getVehicleOpt().isPresent()){
                 Vehicle vehicle= slots.get(i).getVehicleOpt().get();
-                status.add(i +"     " + vehicle.getRegistrationNumber() + "    "+ vehicle.getColor());
+                status.add(i +"\t\t" + vehicle.getRegistrationNumber() + "\t\t"+ vehicle.getColor());
             }
         }
         return status;

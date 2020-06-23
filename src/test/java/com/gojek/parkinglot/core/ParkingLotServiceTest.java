@@ -174,11 +174,11 @@ public class ParkingLotServiceTest {
         Optional<Ticket> t2 =service.park( new Car("KA-02-MM-3034", "Black"));
         service.getStatus();
         assertEquals("Created a parking lot with 3 slots\n" +
-                "Allocated slot number:1\n" +
-                "Allocated slot number:2\n" +
-                "Slot No.    Registration No    Colour\n" +
-                "1     KA-01-HH-1234    White\n" +
-                "2     KA-02-MM-3034    Black", output.toString().trim());
+                "Allocated slot number: 1\n" +
+                "Allocated slot number: 2\n" +
+                "Slot No.\tRegistration No\t\tColour\n" +
+                "1\t\tKA-01-HH-1234\t\tWhite\n" +
+                "2\t\tKA-02-MM-3034\t\tBlack", output.toString().trim());
 
     }
 
@@ -193,26 +193,26 @@ public class ParkingLotServiceTest {
         service.getRegistrationNumsForColour("white");
         //NearestSlot strategy has been tested here
         assertEquals("Created a parking lot with 10 slots\n" +
-                "Allocated slot number:1\n" +
-                "Allocated slot number:2\n" +
-                "Allocated slot number:3\n" +
-                "Allocated slot number:4\n" +
-                "KA-01-HH-1234,KA-50-HH-0001", output.toString().trim());
+                "Allocated slot number: 1\n" +
+                "Allocated slot number: 2\n" +
+                "Allocated slot number: 3\n" +
+                "Allocated slot number: 4\n" +
+                "KA-01-HH-1234, KA-50-HH-0001", output.toString().trim());
         service.getRegistrationNumsForColour("grey");
         assertEquals("Created a parking lot with 10 slots\n" +
-                "Allocated slot number:1\n" +
-                "Allocated slot number:2\n" +
-                "Allocated slot number:3\n" +
-                "Allocated slot number:4\n" +
-                "KA-01-HH-1234,KA-50-HH-0001\n" +
+                "Allocated slot number: 1\n" +
+                "Allocated slot number: 2\n" +
+                "Allocated slot number: 3\n" +
+                "Allocated slot number: 4\n" +
+                "KA-01-HH-1234, KA-50-HH-0001\n" +
                 "KA-51-HH-1324", output.toString().trim());
         service.getRegistrationNumsForColour("orange"); // No Vehicle for color orange
         assertEquals("Created a parking lot with 10 slots\n" +
-                "Allocated slot number:1\n" +
-                "Allocated slot number:2\n" +
-                "Allocated slot number:3\n" +
-                "Allocated slot number:4\n" +
-                "KA-01-HH-1234,KA-50-HH-0001\n" +
+                "Allocated slot number: 1\n" +
+                "Allocated slot number: 2\n" +
+                "Allocated slot number: 3\n" +
+                "Allocated slot number: 4\n" +
+                "KA-01-HH-1234, KA-50-HH-0001\n" +
                 "KA-51-HH-1324\n" +
                 "No cars parked with this color", output.toString().trim());
 
@@ -231,25 +231,25 @@ public class ParkingLotServiceTest {
 
         service.slotForRegistrationNumber("KA-51-HH-1324");
         assertEquals("Created a parking lot with 10 slots\n" +
-                "Allocated slot number:1\n" +
-                "Allocated slot number:2\n" +
-                "Allocated slot number:3\n" +
-                "Allocated slot number:4\n" +
+                "Allocated slot number: 1\n" +
+                "Allocated slot number: 2\n" +
+                "Allocated slot number: 3\n" +
+                "Allocated slot number: 4\n" +
                 "3", output.toString().trim());
         service.slotForRegistrationNumber("KA-51-HH-8938"); //this regNum does not exist
         assertEquals("Created a parking lot with 10 slots\n" +
-                "Allocated slot number:1\n" +
-                "Allocated slot number:2\n" +
-                "Allocated slot number:3\n" +
-                "Allocated slot number:4\n" +
+                "Allocated slot number: 1\n" +
+                "Allocated slot number: 2\n" +
+                "Allocated slot number: 3\n" +
+                "Allocated slot number: 4\n" +
                 "3\n" +
                 "Not Found", output.toString().trim());
         service.slotForRegistrationNumber("kA-50-hh-0001"); // case insensitive
         assertEquals("Created a parking lot with 10 slots\n" +
-                "Allocated slot number:1\n" +
-                "Allocated slot number:2\n" +
-                "Allocated slot number:3\n" +
-                "Allocated slot number:4\n" +
+                "Allocated slot number: 1\n" +
+                "Allocated slot number: 2\n" +
+                "Allocated slot number: 3\n" +
+                "Allocated slot number: 4\n" +
                 "3\n" +
                 "Not Found\n" +
                 "4", output.toString().trim());
@@ -269,28 +269,28 @@ public class ParkingLotServiceTest {
 
         service.getSlotsForVehicleColour("Black");
         assertEquals("Created a parking lot with 10 slots\n" +
-                "Allocated slot number:1\n" +
-                "Allocated slot number:2\n" +
-                "Allocated slot number:3\n" +
-                "Allocated slot number:4\n" +
+                "Allocated slot number: 1\n" +
+                "Allocated slot number: 2\n" +
+                "Allocated slot number: 3\n" +
+                "Allocated slot number: 4\n" +
                 "2", output.toString().trim());
         service.getSlotsForVehicleColour("Yellow");
         assertEquals("Created a parking lot with 10 slots\n" +
-                "Allocated slot number:1\n" +
-                "Allocated slot number:2\n" +
-                "Allocated slot number:3\n" +
-                "Allocated slot number:4\n" +
+                "Allocated slot number: 1\n" +
+                "Allocated slot number: 2\n" +
+                "Allocated slot number: 3\n" +
+                "Allocated slot number: 4\n" +
                 "2\n" +
                 "Sorry, No vehicles of this color has been parked", output.toString().trim());
         service.getSlotsForVehicleColour("white");
         assertEquals("Created a parking lot with 10 slots\n" +
-                "Allocated slot number:1\n" +
-                "Allocated slot number:2\n" +
-                "Allocated slot number:3\n" +
-                "Allocated slot number:4\n" +
+                "Allocated slot number: 1\n" +
+                "Allocated slot number: 2\n" +
+                "Allocated slot number: 3\n" +
+                "Allocated slot number: 4\n" +
                 "2\n" +
                 "Sorry, No vehicles of this color has been parked\n" +
-                "1,4", output.toString().trim());
+                "1, 4", output.toString().trim());
         service.cleanUp();
     }
 }

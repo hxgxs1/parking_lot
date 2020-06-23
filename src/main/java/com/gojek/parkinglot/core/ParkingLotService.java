@@ -36,7 +36,7 @@ public class ParkingLotService {
         isMLPpresent();
         try {
             Optional<Ticket> ticketOpt = multiLevelParking.park(vehicle);
-            ticketOpt.ifPresent(ticket -> System.out.println("Allocated slot number:" + ticket.getSlot()));
+            ticketOpt.ifPresent(ticket -> System.out.println("Allocated slot number: " + ticket.getSlot()));
             return ticketOpt;
         }catch(ParkinglotException e){
             System.out.println(e.getError().getErrorMsg());
@@ -85,9 +85,9 @@ public class ParkingLotService {
         else{
             StringBuilder str=new StringBuilder();
             for(String regisNum: regisNums){
-                str.append(regisNum+",");
+                str.append(regisNum+", ");
             }
-            str.setLength(str.length()-1);
+            str.setLength(str.length()-2);
             System.out.println(str);
         }
         return regisNums;
@@ -113,9 +113,9 @@ public class ParkingLotService {
         }else{
             StringBuilder str=new StringBuilder();
             for(Integer regisNum: slots){
-                str.append(regisNum).append(",");
+                str.append(regisNum).append(", ");
             }
-            str.setLength(str.length()-1);
+            str.setLength(str.length()-2);
             System.out.println(str);
         }
         return slots;

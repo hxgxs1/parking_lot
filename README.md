@@ -10,7 +10,21 @@
 
 
 #How to run
-* 
+1. Run ./setup.sh from the home folder, it will compile, build, runs tests and creates a jar.
+    a) For eample  $ ./setup.sh
+2. Run parking_lot.sh to run the application. It runs in 2 modes
+    a) To read commands from a file run: $ ./parking_lot.sh  src/main/resources/inputFiles/file_inputs.txt
+    b) To run the commands from a shell interface run: $ ./parking_lot.sh
+        
+Following are the commands you can use to run commands from the prompt
+1. create_parking_lot {capacity: Number}
+2. park {Registration Number: String} {color: string}
+3. leave {slot Number: Number}
+4  status
+5. registration_numbers_for_cars_with_colour {color: string}
+6  slot_numbers_for_cars_with_colour {color: string}
+7. slot_number_for_registration_number {Registration Number: string}
+
 
 
 #Thinking process

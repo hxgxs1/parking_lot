@@ -1,11 +1,11 @@
 package com.gojek.parkinglot.core;
 
+import com.gojek.parkinglot.core.ParkingLotStrategy.NearestToEntryStratergy;
 import com.gojek.parkinglot.entities.Car;
 import com.gojek.parkinglot.exception.ParkingLotError;
 import com.gojek.parkinglot.exception.ParkinglotException;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.*;
@@ -57,7 +57,7 @@ public class ParkingLotServiceTest {
         ParkinglotException exception=null;
         ParkingLotService service=new ParkingLotService();
         try {
-            service.park(level, new Car("KA-01-HH-1234", "White"));
+            service.park(new Car("KA-01-HH-1234", "White"));
         }catch(Exception e){
             caught=e;
             exception=(ParkinglotException)e;
@@ -74,7 +74,7 @@ public class ParkingLotServiceTest {
         ParkingLotService service=new ParkingLotService();
         try {
             service.createParkingLot(level, 6, new NearestToEntryStratergy());
-            service.park(level, new Car("KA-01-HH-1234", "White"));
+            service.park(new Car("KA-01-HH-1234", "White"));
         }catch(Exception e){
             caught=e;
         }
@@ -87,10 +87,10 @@ public class ParkingLotServiceTest {
     public void parkAndCheckLotSize() throws ParkinglotException {
         ParkingLotService service=new ParkingLotService();
         service.createParkingLot(level, 6, new NearestToEntryStratergy());
-        service.park(level, new Car("KA-01-HH-1234", "White"));
-        service.park(level, new Car("KA-02-MM-3034", "Black"));
-        service.park(level, new Car("KA-51-HH-1324", "Grey"));
-        int remainingSlots=service.getAvailableSlots(level);
+        service.park( new Car("KA-01-HH-1234", "White"));
+        service.park( new Car("KA-02-MM-3034", "Black"));
+        service.park( new Car("KA-51-HH-1324", "Grey"));
+        int remainingSlots=service.getAvailableSlots();
         assertEquals(remainingSlots, 3); //after parking 3 cars, lot must have 3 slots free
         service.cleanUp();
     }

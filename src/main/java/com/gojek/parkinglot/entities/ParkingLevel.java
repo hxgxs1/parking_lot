@@ -1,6 +1,6 @@
 package com.gojek.parkinglot.entities;
 
-import com.gojek.parkinglot.core.ParkingStratergy;
+import com.gojek.parkinglot.core.ParkingLotStrategy.ParkingStratergy;
 import com.gojek.parkinglot.exception.Error;
 import com.gojek.parkinglot.exception.ParkingLotError;
 import com.gojek.parkinglot.exception.ParkinglotException;

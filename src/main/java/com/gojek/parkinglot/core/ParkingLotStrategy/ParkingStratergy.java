@@ -1,4 +1,4 @@
-package com.gojek.parkinglot.core;
+package com.gojek.parkinglot.core.ParkingLotStrategy;
 
 import com.gojek.parkinglot.entities.Slot;
 

@@ -1,6 +1,8 @@
 package com.gojek.parkinglot.datastore.inMemoryDB;
 
-import com.gojek.parkinglot.core.ParkingStratergy;
+import com.gojek.parkinglot.core.MLPStrategy.DefaultZeroLevelStrategy;
+import com.gojek.parkinglot.core.MLPStrategy.MLPParkingStrategy;
+import com.gojek.parkinglot.core.ParkingLotStrategy.ParkingStratergy;
 import com.gojek.parkinglot.entities.ParkingLevel;
 import com.gojek.parkinglot.entities.Ticket;
 import com.gojek.parkinglot.entities.Vehicle;
@@ -21,12 +23,14 @@ public class MultiLevelParking {
 
 
     private Map<Integer, ParkingLevel> parkingLevelMap;
+    private MLPParkingStrategy mlpParkingStrategy;
 
     private static MultiLevelParking instance;
 
 
     private MultiLevelParking() {
         parkingLevelMap=new HashMap<>();
+        mlpParkingStrategy=new DefaultZeroLevelStrategy();
     }
 
      public static MultiLevelParking getInstance(){
@@ -54,35 +58,43 @@ public class MultiLevelParking {
         parkingLevelMap.put(level, new ParkingLevel(capacity, level, stratergy));
     }
 
-    public Optional<Ticket> park(int level, Vehicle vehicle) throws ParkinglotException{
+    public Optional<Ticket> park(Vehicle vehicle) throws ParkinglotException{
+        int level =mlpParkingStrategy.getParkingLevel(parkingLevelMap);
         return parkingLevelMap.get(level).park(vehicle);
     }
 
-    public Optional<Integer> leave(int level, int slot) throws ParkinglotException{
+    public Optional<Integer> leave(int slot) throws ParkinglotException{
+        int level =mlpParkingStrategy.getParkingLevel(parkingLevelMap);
         return parkingLevelMap.get(level).leave(slot);
     }
 
-    public List<String> getStatus(int level){
+    public List<String> getStatus(){
+        int level =mlpParkingStrategy.getParkingLevel(parkingLevelMap);
         return parkingLevelMap.get(level).getStatus();
     }
 
-    public List<String> getRegistrationNumsForColour(int level, String color){
+    public List<String> getRegistrationNumsForColour(String color){
+        int level =mlpParkingStrategy.getParkingLevel(parkingLevelMap);
         return parkingLevelMap.get(level).getRegistrationNumsForColour(color);
     }
 
-    public Optional<Integer> getSlotForRegistrationNumber(int level, String registrationNum){
+    public Optional<Integer> getSlotForRegistrationNumber(String registrationNum){
+        int level =mlpParkingStrategy.getParkingLevel(parkingLevelMap);
         return parkingLevelMap.get(level).getSlotForRegistrationNumber(registrationNum);
     }
 
-    public List<Integer> getSlotsForVehicleColour(int level, String color){
+    public List<Integer> getSlotsForVehicleColour(String color){
+        int level =mlpParkingStrategy.getParkingLevel(parkingLevelMap);
         return parkingLevelMap.get(level).getSlotsForVehicleColour(color);
     }
 
-    public int getAvailableSlots(int level){
+    public int getAvailableSlots(){
+        int level =mlpParkingStrategy.getParkingLevel(parkingLevelMap);
         return parkingLevelMap.get(level).getAvailableSlotsCount();
     }
 
-    public boolean doesLevelExists(int level){
+    public boolean doesLevelExists(){
+        int level =mlpParkingStrategy.getParkingLevel(parkingLevelMap);
         return parkingLevelMap.containsKey(level);
     }
 

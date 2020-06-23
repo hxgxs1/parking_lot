@@ -1,6 +1,6 @@
 package com.gojek.parkinglot.commandInterpretor;
 
-import com.gojek.parkinglot.core.NearestToEntryStratergy;
+import com.gojek.parkinglot.core.ParkingLotStrategy.NearestToEntryStratergy;
 import com.gojek.parkinglot.core.ParkingLotService;
 import com.gojek.parkinglot.entities.Car;
 import com.gojek.parkinglot.exception.ParkingLotError;
@@ -61,7 +61,7 @@ public class CommandProcessor {
 
         String[] parts=inputCommand.split(" ");
         String command=parts[0];
-        int level=0;
+       // int level=0;
         if(command.equals("create_parking_lot")){
             try {
                 int capacity = Integer.parseInt(parts[1]);
@@ -78,18 +78,18 @@ public class CommandProcessor {
             if(parts[1].isEmpty() || parts[2].isEmpty()){
                 throwParkingLotException(ParkingLotError.WRONG_PARAMETER);
             }
-            parkingLotService.park(level, new Car(regisNumber, color));
+            parkingLotService.park(new Car(regisNumber, color));
 
         }
 
         if(command.equals("status")){
-            parkingLotService.getStatus(level);
+            parkingLotService.getStatus();
         }
 
         if(command.equals("leave")){
             try {
                 int slot = Integer.parseInt(parts[1]);
-                parkingLotService.leave(level, slot);
+                parkingLotService.leave(slot);
             }catch (NumberFormatException e){
                 throwParkingLotException(ParkingLotError.WRONG_PARAMETER);
             }
@@ -100,7 +100,7 @@ public class CommandProcessor {
             if(parts[1].isEmpty()){
                 throwParkingLotException(ParkingLotError.WRONG_PARAMETER);
             }
-            parkingLotService.getRegistrationNumsForColour(level, color);
+            parkingLotService.getRegistrationNumsForColour(color);
         }
         if(command.equals("slot_number_for_registration_number")){
 
@@ -108,14 +108,14 @@ public class CommandProcessor {
             if(parts[1].isEmpty()){
                 throwParkingLotException(ParkingLotError.WRONG_PARAMETER);
             }
-            parkingLotService.slotForRegistrationNumber(level, registrationNum);
+            parkingLotService.slotForRegistrationNumber(registrationNum);
         }
         if(command.equals("slot_numbers_for_cars_with_colour")){
             String color=parts[1];
             if(parts[1].isEmpty()){
                 throwParkingLotException(ParkingLotError.WRONG_PARAMETER);
             }
-            parkingLotService.getSlotsForVehicleColour(level, color);
+            parkingLotService.getSlotsForVehicleColour(color);
         }
     }
 

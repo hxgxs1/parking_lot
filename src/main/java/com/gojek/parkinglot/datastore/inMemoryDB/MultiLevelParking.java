@@ -4,6 +4,8 @@ import com.gojek.parkinglot.core.ParkingStratergy;
 import com.gojek.parkinglot.entities.ParkingLevel;
 import com.gojek.parkinglot.entities.Ticket;
 import com.gojek.parkinglot.entities.Vehicle;
+import com.gojek.parkinglot.exception.Error;
+import com.gojek.parkinglot.exception.ParkingLotError;
 import com.gojek.parkinglot.exception.ParkinglotException;
 
 import java.util.HashMap;
@@ -27,7 +29,7 @@ public class MultiLevelParking {
         parkingLevelMap=new HashMap<>();
     }
 
-    synchronized public static MultiLevelParking getInstance(){
+     public static MultiLevelParking getInstance(){
         if(instance==null)
             instance=new MultiLevelParking();
         return instance;
@@ -45,7 +47,10 @@ public class MultiLevelParking {
         MultiLevelParking.instance = instance;
     }
 
-    public void addParkingLot(int level, int capacity, ParkingStratergy stratergy){
+    public void addParkingLot(int level, int capacity, ParkingStratergy stratergy) throws ParkinglotException{
+        if(parkingLevelMap.containsKey(level)){
+            throwParkingLotException(ParkingLotError.PARKIGN_LOT_ALREADY_EXISTS);
+        }
         parkingLevelMap.put(level, new ParkingLevel(capacity, level, stratergy));
     }
 
@@ -71,6 +76,31 @@ public class MultiLevelParking {
 
     public List<Integer> getSlotsForVehicleColour(int level, String color){
         return parkingLevelMap.get(level).getSlotsForVehicleColour(color);
+    }
+
+    public int getAvailableSlots(int level){
+        return parkingLevelMap.get(level).getAvailableSlotsCount();
+    }
+
+    public boolean doesLevelExists(int level){
+        return parkingLevelMap.containsKey(level);
+    }
+
+    public void cleanUp(){
+        for(ParkingLevel level: parkingLevelMap.values()){
+            level.cleanUp();
+        }
+        parkingLevelMap=null;
+        instance=null;
+    }
+
+    private void throwParkingLotException(ParkingLotError parkingLotError) throws ParkinglotException {
+        Error error = new Error();
+        error.setErrorCode(parkingLotError.name());
+        error.setErrorMsg(parkingLotError.getErrorMsg());
+        ParkinglotException exception = new ParkinglotException();
+        exception.setError(error);
+        throw exception;
     }
 
 }

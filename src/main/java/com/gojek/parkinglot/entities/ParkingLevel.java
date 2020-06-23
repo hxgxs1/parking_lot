@@ -205,4 +205,12 @@ public class ParkingLevel implements ParkingLot {
         exception.setError(error);
         throw exception;
     }
+
+    public void cleanUp(){
+        capapcity=0;
+        level=-1;
+        parkingStratergy=null;
+        slots=null;
+        tickets=null;
+    }
 }

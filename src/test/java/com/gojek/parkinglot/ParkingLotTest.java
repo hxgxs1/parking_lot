@@ -34,6 +34,7 @@ public class ParkingLotTest {
         ParkingLotService service=new ParkingLotService();
         String str=service.createParkingLot(level, 6, new NearestToEntryStratergy());
         assertTrue("created a parking lot with 6 slots".equalsIgnoreCase(str.trim()));
+        service.cleanUp();
     }
 
 
@@ -43,8 +44,8 @@ public class ParkingLotTest {
         ParkingLotService service=new ParkingLotService();
 
         try {
-            String str=service.createParkingLot(level, 6, new NearestToEntryStratergy());
-            String str2 = service.createParkingLot(level, 10, new NearestToEntryStratergy());
+            service.createParkingLot(level, 6, new NearestToEntryStratergy());
+            service.createParkingLot(level, 10, new NearestToEntryStratergy());
         }catch (ParkinglotException e){
             exception=e;
         }
@@ -52,6 +53,7 @@ public class ParkingLotTest {
         assertSame(ParkinglotException.class, exception.getClass());
         assertSame(ParkingLotError.PARKIGN_LOT_ALREADY_EXISTS.getErrorMsg(), exception.getError().getErrorMsg());
         service.createParkingLot(1, 15, new NearestToEntryStratergy()); //created a new Level
+        service.cleanUp();
     }
     
 }

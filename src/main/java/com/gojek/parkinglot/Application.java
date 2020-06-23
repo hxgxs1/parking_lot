@@ -50,7 +50,6 @@ public class Application {
         BufferedReader bufferReader=null;
 
         try {
-
             while (true) {
                 System.out.println("Enter 'bye' to come out of command prompt");
                 System.out.println("$: ");

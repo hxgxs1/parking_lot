@@ -5,6 +5,10 @@ import com.gojek.parkinglot.entities.Car;
 import com.gojek.parkinglot.entities.Ticket;
 import com.gojek.parkinglot.exception.ParkingLotError;
 import com.gojek.parkinglot.exception.ParkinglotException;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,10 +25,12 @@ import static org.junit.Assert.*;
 public class ParkingLotServiceTest {
 
     int level;
+    private final ByteArrayOutputStream output	= new ByteArrayOutputStream();
 
 
     @Before
     public void init(){
+        System.setOut(new PrintStream(output));
         level=0;
     }
 
@@ -152,18 +158,139 @@ public class ParkingLotServiceTest {
     }
 
     @Test
-    public void getStatus() {
+    public void getStatusWithoutVehiclesParked()throws ParkinglotException {
+        ParkingLotService service=new ParkingLotService();
+        service.createParkingLot(level, 3, new NearestToEntryStratergy());
+        List<String> status =service.getStatus();
+        assertEquals("Created a parking lot with 3 slots\nParking-lot is empty", output.toString().trim());
+        service.cleanUp();
     }
 
     @Test
-    public void getRegistrationNumsForColour() {
+    public void getStatusWithVehiclesParked() throws ParkinglotException{
+        ParkingLotService service=new ParkingLotService();
+        service.createParkingLot(level, 3, new NearestToEntryStratergy());
+        Optional<Ticket> t1=service.park( new Car("KA-01-HH-1234", "White"));
+        Optional<Ticket> t2 =service.park( new Car("KA-02-MM-3034", "Black"));
+        service.getStatus();
+        assertEquals("Created a parking lot with 3 slots\n" +
+                "Allocated slot number:1\n" +
+                "Allocated slot number:2\n" +
+                "Slot No.    Registration No    Colour\n" +
+                "1     KA-01-HH-1234    White\n" +
+                "2     KA-02-MM-3034    Black", output.toString().trim());
+
     }
 
     @Test
-    public void slotForRegistrationNumber() {
+    public void getRegistrationNumsForColour()throws ParkinglotException {
+        ParkingLotService service=new ParkingLotService();
+        service.createParkingLot(level, 10, new NearestToEntryStratergy());
+        Optional<Ticket> t1=service.park( new Car("KA-01-HH-1234", "White"));
+        Optional<Ticket> t2 =service.park( new Car("KA-02-MM-3034", "Black"));
+        Optional<Ticket> t3= service.park( new Car("KA-51-HH-1324", "Grey"));
+        Optional<Ticket> t4= service.park( new Car("KA-50-HH-0001", "White"));
+        service.getRegistrationNumsForColour("white");
+        //NearestSlot strategy has been tested here
+        assertEquals("Created a parking lot with 10 slots\n" +
+                "Allocated slot number:1\n" +
+                "Allocated slot number:2\n" +
+                "Allocated slot number:3\n" +
+                "Allocated slot number:4\n" +
+                "KA-01-HH-1234,KA-50-HH-0001", output.toString().trim());
+        service.getRegistrationNumsForColour("grey");
+        assertEquals("Created a parking lot with 10 slots\n" +
+                "Allocated slot number:1\n" +
+                "Allocated slot number:2\n" +
+                "Allocated slot number:3\n" +
+                "Allocated slot number:4\n" +
+                "KA-01-HH-1234,KA-50-HH-0001\n" +
+                "KA-51-HH-1324", output.toString().trim());
+        service.getRegistrationNumsForColour("orange"); // No Vehicle for color orange
+        assertEquals("Created a parking lot with 10 slots\n" +
+                "Allocated slot number:1\n" +
+                "Allocated slot number:2\n" +
+                "Allocated slot number:3\n" +
+                "Allocated slot number:4\n" +
+                "KA-01-HH-1234,KA-50-HH-0001\n" +
+                "KA-51-HH-1324\n" +
+                "No cars parked with this color", output.toString().trim());
+
+        service.cleanUp();
+
     }
 
     @Test
-    public void getSlotsForVehicleColour() {
+    public void slotForRegistrationNumber() throws ParkinglotException{
+        ParkingLotService service=new ParkingLotService();
+        service.createParkingLot(level, 10, new NearestToEntryStratergy());
+        Optional<Ticket> t1=service.park( new Car("KA-01-HH-1234", "White"));
+        Optional<Ticket> t2 =service.park( new Car("KA-02-MM-3034", "Black"));
+        Optional<Ticket> t3= service.park( new Car("KA-51-HH-1324", "Grey"));
+        Optional<Ticket> t4= service.park( new Car("KA-50-HH-0001", "White"));
+
+        service.slotForRegistrationNumber("KA-51-HH-1324");
+        assertEquals("Created a parking lot with 10 slots\n" +
+                "Allocated slot number:1\n" +
+                "Allocated slot number:2\n" +
+                "Allocated slot number:3\n" +
+                "Allocated slot number:4\n" +
+                "3", output.toString().trim());
+        service.slotForRegistrationNumber("KA-51-HH-8938"); //this regNum does not exist
+        assertEquals("Created a parking lot with 10 slots\n" +
+                "Allocated slot number:1\n" +
+                "Allocated slot number:2\n" +
+                "Allocated slot number:3\n" +
+                "Allocated slot number:4\n" +
+                "3\n" +
+                "Not Found", output.toString().trim());
+        service.slotForRegistrationNumber("kA-50-hh-0001"); // case insensitive
+        assertEquals("Created a parking lot with 10 slots\n" +
+                "Allocated slot number:1\n" +
+                "Allocated slot number:2\n" +
+                "Allocated slot number:3\n" +
+                "Allocated slot number:4\n" +
+                "3\n" +
+                "Not Found\n" +
+                "4", output.toString().trim());
+
+
+        service.cleanUp();
+    }
+
+    @Test
+    public void getSlotsForVehicleColour() throws ParkinglotException {
+        ParkingLotService service=new ParkingLotService();
+        service.createParkingLot(level, 10, new NearestToEntryStratergy());
+        Optional<Ticket> t1=service.park( new Car("KA-01-HH-1234", "White"));
+        Optional<Ticket> t2 =service.park( new Car("KA-02-MM-3034", "Black"));
+        Optional<Ticket> t3= service.park( new Car("KA-51-HH-1324", "Grey"));
+        Optional<Ticket> t4= service.park( new Car("KA-50-HH-0001", "White"));
+
+        service.getSlotsForVehicleColour("Black");
+        assertEquals("Created a parking lot with 10 slots\n" +
+                "Allocated slot number:1\n" +
+                "Allocated slot number:2\n" +
+                "Allocated slot number:3\n" +
+                "Allocated slot number:4\n" +
+                "2", output.toString().trim());
+        service.getSlotsForVehicleColour("Yellow");
+        assertEquals("Created a parking lot with 10 slots\n" +
+                "Allocated slot number:1\n" +
+                "Allocated slot number:2\n" +
+                "Allocated slot number:3\n" +
+                "Allocated slot number:4\n" +
+                "2\n" +
+                "Sorry, No vehicles of this color has been parked", output.toString().trim());
+        service.getSlotsForVehicleColour("white");
+        assertEquals("Created a parking lot with 10 slots\n" +
+                "Allocated slot number:1\n" +
+                "Allocated slot number:2\n" +
+                "Allocated slot number:3\n" +
+                "Allocated slot number:4\n" +
+                "2\n" +
+                "Sorry, No vehicles of this color has been parked\n" +
+                "1,4", output.toString().trim());
+        service.cleanUp();
     }
 }

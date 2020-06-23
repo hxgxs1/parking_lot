@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb9d5f78-9c3b-449a-8a71-44e16950ce5a" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/MLPStrategy/DefaultZeroLevelStrategy.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/MLPStrategy/MLPParkingStrategy.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/MLPStrategy/NextLevelStratergy.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/commandInterpretor/CommandProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/commandInterpretor/CommandProcessor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/NearestToEntryStratergy.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/ParkingLotStrategy/NearestToEntryStratergy.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/ParkingLotService.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/ParkingLotService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/ParkingStratergy.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/ParkingLotStrategy/ParkingStratergy.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/datastore/inMemoryDB/MultiLevelParking.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/datastore/inMemoryDB/MultiLevelParking.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingLevel.java" afterPath="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingLevel.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/ParkingLotTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/core/ParkingLotServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/core/ParkingLotServiceTest.java" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -49,11 +38,26 @@
       <file leaf-file-name="ParkingLotServiceTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/core/ParkingLotServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
+            <state relative-caret-position="26">
               <caret line="28" column="46" lean-forward="true" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
               <folding>
                 <element signature="e#549#550#0" expanded="true" />
                 <element signature="e#572#573#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MultiLevelParking.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/datastore/inMemoryDB/MultiLevelParking.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="32" column="55" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="55" />
+              <folding>
+                <element signature="e#1261#1262#0" expanded="true" />
+                <element signature="e#1299#1300#0" expanded="true" />
+                <element signature="e#1501#1502#0" expanded="true" />
+                <element signature="e#1554#1555#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,30 +75,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DefaultZeroLevelStrategy.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DefaultZeroLevelStrategy.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/MLPStrategy/DefaultZeroLevelStrategy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="300">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#386#387#0" expanded="true" />
                 <element signature="e#410#411#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MultiLevelParking.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/datastore/inMemoryDB/MultiLevelParking.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="67" column="46" lean-forward="false" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
-              <folding>
-                <element signature="e#1261#1262#0" expanded="true" />
-                <element signature="e#1299#1300#0" expanded="true" />
-                <element signature="e#1501#1502#0" expanded="true" />
-                <element signature="e#1554#1555#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,11 +105,24 @@
       <file leaf-file-name="NextLevelStratergy.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/MLPStrategy/NextLevelStratergy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+            <state relative-caret-position="255">
+              <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="369">
+                <caret line="34" column="14" lean-forward="true" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -174,7 +176,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/exception/ParkinglotException.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/exception/Error.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/CommandsTest.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/Slot.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingSlot.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ElectricSlot.java" />
@@ -196,6 +197,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/MLPStrategy/DefaultZeroLevelStrategy.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/datastore/inMemoryDB/MultiLevelParking.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/MLPStrategy/NextLevelStratergy.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -856,17 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="240">
-            <caret line="16" column="40" lean-forward="false" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/Vehicle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1041,37 +1032,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/commandInterpretor/CommandsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/MLPStrategy/NextLevelStratergy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/datastore/inMemoryDB/MultiLevelParking.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="67" column="46" lean-forward="false" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
-          <folding>
-            <element signature="e#1261#1262#0" expanded="true" />
-            <element signature="e#1299#1300#0" expanded="true" />
-            <element signature="e#1501#1502#0" expanded="true" />
-            <element signature="e#1554#1555#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/entities/ParkingLevel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1007">
@@ -1103,17 +1063,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/core/ParkingLotServiceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="28" column="46" lean-forward="true" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
-          <folding>
-            <element signature="e#549#550#0" expanded="true" />
-            <element signature="e#572#573#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/MLPStrategy/MLPParkingStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1124,15 +1073,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/commandInterpretor/CommandsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/MLPStrategy/DefaultZeroLevelStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#386#387#0" expanded="true" />
             <element signature="e#410#411#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/gojek/parkinglot/core/ParkingLotServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="28" column="46" lean-forward="true" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+          <folding>
+            <element signature="e#549#550#0" expanded="true" />
+            <element signature="e#572#573#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/datastore/inMemoryDB/MultiLevelParking.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="32" column="55" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="55" />
+          <folding>
+            <element signature="e#1261#1262#0" expanded="true" />
+            <element signature="e#1299#1300#0" expanded="true" />
+            <element signature="e#1501#1502#0" expanded="true" />
+            <element signature="e#1554#1555#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gojek/parkinglot/core/MLPStrategy/NextLevelStratergy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="369">
+            <caret line="34" column="14" lean-forward="true" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

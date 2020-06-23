@@ -21,9 +21,9 @@
 
 #Entities:
 * Vehicle -> car
-* Ticket - issued after each parking
-* MultiLevelParking- a single building with multiple levels
-* ParkingLevel - a level of parking in a building/MLCP
+* Ticket - issued after each parking. It can have info like the level on which vehicle is parked, the time the vehicle was parked and vehicle info.
+* MultiLevelParking- a single building with multiple levels. Its responsibility is to tell on which level a vehicle should be parked at.
+* ParkingLevel - a level of parking in a building/MLCP. Its responsibility is to tell on which slot a vehicle should be parked at.
 * Slot - a single parking slot in a parkingLevel
 
 #Behaviours

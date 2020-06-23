@@ -64,7 +64,7 @@ public class CommandProcessor {
         int level=0;
         if(command.equals("create_parking_lot")){
             try {
-                int capacity = Integer.parseInt(parts[1]);  //Todo: handle exceptions
+                int capacity = Integer.parseInt(parts[1]);
                 createParkingLot(capacity);
             }catch(NumberFormatException e){
                 throwParkingLotException(ParkingLotError.WRONG_PARAMETER);
@@ -75,6 +75,9 @@ public class CommandProcessor {
 
             String regisNumber=parts[1];
             String color=parts[2];
+            if(parts[1].isEmpty() || parts[2].isEmpty()){
+                throwParkingLotException(ParkingLotError.WRONG_PARAMETER);
+            }
             parkingLotService.park(level, new Car(regisNumber, color));
 
         }
@@ -94,15 +97,24 @@ public class CommandProcessor {
 
         if(command.equals("registration_numbers_for_cars_with_colour")){
             String color=parts[1];
+            if(parts[1].isEmpty()){
+                throwParkingLotException(ParkingLotError.WRONG_PARAMETER);
+            }
             parkingLotService.getRegistrationNumsForColour(level, color);
         }
         if(command.equals("slot_number_for_registration_number")){
 
             String registrationNum=parts[1];
+            if(parts[1].isEmpty()){
+                throwParkingLotException(ParkingLotError.WRONG_PARAMETER);
+            }
             parkingLotService.slotForRegistrationNumber(level, registrationNum);
         }
         if(command.equals("slot_numbers_for_cars_with_colour")){
             String color=parts[1];
+            if(parts[1].isEmpty()){
+                throwParkingLotException(ParkingLotError.WRONG_PARAMETER);
+            }
             parkingLotService.getSlotsForVehicleColour(level, color);
         }
     }

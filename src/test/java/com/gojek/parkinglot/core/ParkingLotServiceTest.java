@@ -2,10 +2,14 @@ package com.gojek.parkinglot.core;
 
 import com.gojek.parkinglot.core.ParkingLotStrategy.NearestToEntryStratergy;
 import com.gojek.parkinglot.entities.Car;
+import com.gojek.parkinglot.entities.Ticket;
 import com.gojek.parkinglot.exception.ParkingLotError;
 import com.gojek.parkinglot.exception.ParkinglotException;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.swing.text.html.Option;
+import java.util.Optional;
 
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.*;
@@ -95,8 +99,56 @@ public class ParkingLotServiceTest {
         service.cleanUp();
     }
 
+
     @Test
-    public void leave() {
+    public void parkAndCheckSlotIsFull() throws ParkinglotException {
+        ParkingLotService service=new ParkingLotService();
+        service.createParkingLot(level, 3, new NearestToEntryStratergy());
+        Optional<Ticket> t1=service.park( new Car("KA-01-HH-1234", "White"));
+        Optional<Ticket> t2 =service.park( new Car("KA-02-MM-3034", "Black"));
+        Optional<Ticket> t3= service.park( new Car("KA-51-HH-1324", "Grey"));
+        Optional<Ticket> t4= service.park( new Car("KA-50-HH-0001", "White"));
+        System.out.println(t1.get());
+        assertEquals(t4, Optional.empty()); //after parking 3 cars, 4th parking shouldn't take place
+        service.cleanUp();
+    }
+
+    @Test
+    public void leave() throws ParkinglotException {
+        ParkingLotService service=new ParkingLotService();
+        service.createParkingLot(level, 3, new NearestToEntryStratergy());
+        Optional<Ticket> t1=service.park( new Car("KA-01-HH-1234", "White"));
+        Optional<Ticket> t2 =service.park( new Car("KA-02-MM-3034", "Black"));
+        Optional<Integer> slotNumber= service.leave(1);
+        assertEquals(Optional.of(1), slotNumber);
+        service.cleanUp();
+
+    }
+
+    @Test
+    public void testLeavingWithoutCreatingLot(){
+        Throwable caught = null;
+        ParkinglotException exception=null;
+        ParkingLotService service=new ParkingLotService();
+        try {
+            service.leave(2);
+        }catch(Exception e){
+            caught=e;
+            exception=(ParkinglotException)e;
+        }
+        assertNotNull(caught);
+        assertSame(ParkinglotException.class, caught.getClass());
+        assertSame(ParkingLotError.PARKING_LOT_DOES_NOT_EXIST.getErrorMsg(), exception.getError().getErrorMsg());
+        service.cleanUp();
+    }
+
+    @Test
+    public void testLeavingWithoutParking()  throws ParkinglotException {
+        ParkingLotService service=new ParkingLotService();
+        service.createParkingLot(level, 3, new NearestToEntryStratergy());
+        Optional<Integer> slotOpt= service.leave(2); // taking out a car from an empty slot
+        assertEquals(Optional.empty(), slotOpt);
+        service.cleanUp();
     }
 
     @Test
